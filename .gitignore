@@ -7,4 +7,19 @@
 /public/bundles/
 /var/
 /vendor/
+/var/bootstrap.php.cache
+/var/cache/*
+/app/config/parameters.yml
+/var/logs/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+/var/SymfonyRequirements.php
+/build/
+/vendor/
+/bin/
+/composer.phar
+/web/app_dev.php
+/web/bundles/
+/web/config.php
+/.idea
 ###< symfony/framework-bundle ###

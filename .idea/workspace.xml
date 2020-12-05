@@ -11,77 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="918e5a5c-8711-49b4-be7a-698c27e979d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201104161711.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201104161942.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201104162134.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201105111956.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201105145536.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201119143344.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201202115406.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201204125751.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201204132744.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20201204133437.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/25/asdasd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/as.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/asdasd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/asdq.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/asdqwe.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/asdqwe111.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/test.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/test2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/use_case1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/alertstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/loginstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/modal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/naglowek.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/table.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/swap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ContestController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Contest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Contestants.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Judge.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Organizer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Photo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/VoteLog.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/ContestType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/LoginType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/UserAccountsType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ContestRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ContestantsRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/JudgeRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/OrganizerRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/PhotoRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/VoteLogRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/contest.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/contests.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/new_contest.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/organizer.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/photos.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/result.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/contest/vote.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/main/home.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/registration.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/konkursy_fotograficzne.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/konkursy_fotograficzne.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/UserAccounts.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/UserAccounts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserAccountsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserAccountsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +160,7 @@
       <workItem from="1607081909490" duration="742000" />
       <workItem from="1607083453060" duration="12077000" />
       <workItem from="1607102093130" duration="1267000" />
-      <workItem from="1607167829925" duration="1190000" />
+      <workItem from="1607167829925" duration="1538000" />
     </task>
     <servers />
   </component>
