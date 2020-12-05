@@ -1,8 +1,11 @@
-<body>
+<!DOCTYPE html>
+<html>
+
 {% block stylesheets %}
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
     <link rel='stylesheet' href='/css/table.css' type='text/css'>
 {% endblock %}
+{% block body %}
 <header>
     <h1>Lista Konkursów</h1>
     <a href="/">
@@ -25,5 +28,5 @@
             </tr>
         {% endfor %}
     </table>
-
-</body>
+{% endblock %}
+</html>
