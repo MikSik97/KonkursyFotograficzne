@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <body>
+    {% if error is not null %}
+        {{ error }}
+    {% endif %}
+    <div>
+        <h1>Zarejestruj się</h1>
+        {{ form(form) }}
+    </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<body>
+{% block stylesheets %}
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel='stylesheet' href='/css/table.css' type='text/css'>
+{% endblock %}
+<header>
+    <h1>Lista Konkursów</h1>
+    <a href="/">
+        <button class="btn3">Powrót</button>
+    </a>
+</header>
+    <table>
+        <tr>
+            <th>Nazwa</th>
+            <th>Temat</th>
+            <th>Termin zgłoszeń</th>
+            <th>Termin rozpoczęcia głosowania</th>
+        <tr>
+        {% for c in contests %}
+            <tr onclick="location.href='contest/{{ c.id }}'">
+                <td>{{ c.name }}</td>
+                <td>{{ c.theme }}</td>
+                <td>{{ c.applicationsDeadline|date('Y-m-d H:i:s') }}</td>
+            <td>{{  c.voteStartTime|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>

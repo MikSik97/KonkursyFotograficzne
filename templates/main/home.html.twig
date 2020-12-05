@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+{% block stylesheet %}
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+{% endblock %}
+    <body>
+        <header>
+            <h1> Konkursy Fotograficzne</h1>
+            <a href="{{ path('app_logout') }}">
+                <button class="btn3">Wyloguj</button>
+            </a>
+            <a href="{{ path('contests') }}">
+                <button class="btn2"> dostępne konkursy</button>
+            </a>
+            <a href="{{ path('new_contest') }}">
+                <button class="btn2"> Stwórz konkurs</button>
+            </a>
+            <a href="{{ path('login') }}">
+                <button class="btn2">login</button>
+            </a>
+            <a href="{{ path('registration') }}">
+                <button class="btn2">rejestracja</button>
+            </a>
+    </header>
+    </body>
+</html>

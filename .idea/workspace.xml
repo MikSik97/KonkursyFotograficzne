@@ -11,29 +11,92 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="918e5a5c-8711-49b4-be7a-698c27e979d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/konkursy_fotograficzne.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201104161711.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201104161942.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201104162134.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201105111956.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201105145536.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201119143344.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201202115406.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201204125751.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201204132744.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201204133437.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/25/asdasd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/as.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/asdasd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/asdq.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/27/asdqwe.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/asdqwe111.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/test.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/test2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/28/use_case1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/alertstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/loginstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/modal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/naglowek.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/table.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/swap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ContestController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Contest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Contestants.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Judge.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Organizer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Photo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/VoteLog.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/ContestType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/LoginType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/UserAccountsType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/ContestRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/ContestantsRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/JudgeRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/OrganizerRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/PhotoRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/VoteLogRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/contest.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/contests.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/new_contest.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/organizer.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/photos.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/result.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contest/vote.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/main/home.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/registration.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/konkursy_fotograficzne.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/konkursy_fotograficzne.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/UserAccounts.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/UserAccounts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserAccountsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserAccountsRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Entity/UserAccounts.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -108,18 +171,26 @@
       <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/vendor/symfony/form" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/vendor/symfony/asset" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jpKJWTbf0D19duxe8EzECJntin" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -128,6 +199,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\ProjektySymfony" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\ProjektySymfony\konkursy_fotograficzne\public" />
+      <recent name="C:\ProjektySymfony\konkursy_fotograficzne\public\css" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -138,7 +213,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604495522185</updated>
-      <workItem from="1604495523272" duration="2102000" />
+      <workItem from="1604495523272" duration="2347000" />
+      <workItem from="1604504958876" duration="6384000" />
+      <workItem from="1604524770768" duration="1679000" />
+      <workItem from="1604569627527" duration="18199000" />
+      <workItem from="1605621758725" duration="6658000" />
+      <workItem from="1605690665506" duration="13295000" />
+      <workItem from="1605779999372" duration="12703000" />
+      <workItem from="1606400392248" duration="14390000" />
+      <workItem from="1606478164664" duration="12214000" />
+      <workItem from="1606740043502" duration="5734000" />
+      <workItem from="1606813502178" duration="7347000" />
+      <workItem from="1606906121807" duration="19097000" />
+      <workItem from="1606987426194" duration="10961000" />
+      <workItem from="1607081909490" duration="742000" />
+      <workItem from="1607083453060" duration="12077000" />
+      <workItem from="1607102093130" duration="1267000" />
+      <workItem from="1607167829925" duration="1190000" />
     </task>
     <servers />
   </component>
@@ -155,11 +246,39 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="770" y="399" key="#Composer" timestamp="1604495585321">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="770" y="399" key="#Composer/0.0.1920.1040@0.0.1920.1040" timestamp="1604495585321" />
+    <state x="336" y="361" key="#SQL_Dialects" timestamp="1605794024771">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="336" y="361" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1605794024771" />
+    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606817654884">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606817654884" />
+    <state x="617" y="64" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604516405523">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="617" y="64" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604516405523" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604586286499">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604586286499" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1604570955613">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604570955613" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605694996648">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605694996648" />
   </component>
 </project>

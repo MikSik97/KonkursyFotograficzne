@@ -1,0 +1,44 @@
+{% block stylesheets %}
+    <link rel='stylesheet' href='/css/table.css' type='text/css'>
+    <link rel='stylesheet' href='/css/modal.css' type='text/css'>
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+{% endblock %}
+{% block body %}
+<header>
+    <h1> Wyniki</h1>
+    <a href="/contests">
+        <button class="btn3">Powrót</button>
+    </a>
+</header>
+    <table>
+    <tr>
+        <th>#</th>
+        <th>Autor</th>
+        <th>Zdjęcie</th>
+        <th>Wynik</th>
+    </tr>
+        {% set p=1 %}
+    {% for r in result %}
+        <tr>
+            <td>
+                {{ p }}
+            </td>
+            <td>
+                {{ r.email }}
+            </td>
+            <td>
+                <div class="box">
+                    <img src="/{{ r.filepath }}" width="100%" height="auto">
+                </div>
+            </td>
+            <td>
+                {{ r.score }}
+            </td>
+        </tr>
+        {% set p = p + 1 %}
+    {% endfor %}
+
+    </table>
+{% endblock %}
+
+

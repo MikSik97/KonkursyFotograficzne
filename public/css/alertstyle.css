@@ -1,0 +1,48 @@
+.alert {
+    position: absolute;
+    top: -80px;
+    right: -20px;
+    width:300px;
+    padding: 20px;
+    background-color: #f44336;
+    border-radius: 6px;
+    color: white;
+    z-index: 10;
+}
+.alertS{
+    position: absolute;
+    top: -80px;
+    right: -20px;
+    width:300px;
+    padding: 20px;
+    background-color: #27ae60;
+    border-radius: 6px;
+    color: white;
+    z-index: 10;
+}
+.alertR{
+    position: absolute;
+    top: -80px;
+    right: -20px;
+    width:300px;
+    padding: 20px;
+    background-color: yellow;
+    border-radius: 6px;
+    color: white;
+    z-index: 10;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}

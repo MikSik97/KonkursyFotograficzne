@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+{% block stylesheets %}
+    <link rel='stylesheet' href='/css/table.css' type='text/css'>
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+{% endblock %}
+{% block body %}
+    <title>Panel Organizatora</title>
+<header>
+    <h1> Panel Organizatora Konkursu: {{ contest.name }}</h1>
+    <a href="/contest/{{ contest.id }}">
+        <button class="btn3">Powrót</button>
+    </a>
+    <a>
+        <button onclick="swap('Contest','Votes')"class="btn2">Konkurs</button>
+    </a>
+    <a>
+        <button onclick="swap('Votes','Contest')"class="btn2"> Głosowanie</button>
+    </a>
+</header>
+    <div class="box" id="Contest">
+        <form method="post">
+            <label id="first">{{ contest.id }}: {{ contest.name }}</label>
+            <label>Temat:</label>
+            <input name="theme" class="text" type="text" value="{{ contest.theme }}">
+            <label>Termin zgłoszeń:</label>
+            <input name="deadline" class="text" type="datetime-local" value="{{ contest.applicationsDeadline|date('Y-m-d H:i:s') }}">
+            <label>Początek głosowania:</label>
+            <input name="voteStart" class="text" type="datetime-local" value="{{ contest.voteStartTime|date('Y-m-d H:i:s') }}">
+            <label>Koniec głosowania:</label>
+            <input name="voteEnd" class="text" type="datetime-local" value="{{ contest.voteEndTime|date('Y-m-d H:i:s') }}">
+            <button class="btn2">Zapisz</button>
+        </form>
+    </div>
+    <div id="Votes" hidden>
+    <table>
+        <tr>
+            <th>id User\id Zdjęcia</th>
+            {% for p in photos%}
+                <th>
+                   {{ p.id }}
+                </th>
+            {% endfor %}
+        </tr>
+        {% for key, judges in grades %}
+            <tr>
+            <th>{{ key }}</th>
+            {% for grade in judges %}
+                {% if grade.id in userPhotos[key] %}
+                <td style="background-color: limegreen"> Autor</td>
+                {% elseif grade.grade is empty %}
+                    <td>0</td>
+                {% else %}
+                    <td style="background-color: limegreen"> {{ grade.id}} </td>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+        <a href="/contest/{{ contest.id }}/gen_res">
+            <button class="btn2">Generuj wyniki</button>
+        </a>
+    </div>
+{% endblock %}
+{% block javascripts %}
+        <script src="/js/swap.js"></script>
+{% endblock %}
+
+</html>

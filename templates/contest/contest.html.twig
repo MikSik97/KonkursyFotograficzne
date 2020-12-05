@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel='stylesheet' href='/css/table.css' type='text/css'>
+{% endblock %}
+{% block body %}
+    <header>
+        <h1>{{ contest.name }}</h1>
+        <a href="/contests">
+            <button class="btn3">Powrót</button>
+        </a>
+        <a href="/contest/{{ contest.id }}/organizer"><button class="btn2"> Panel</button></a>
+        <a href="/contest/{{ contest.id }}/vote"> <button class="btn2">Głosuj</button></a>
+        <a href="/contest/{{ contest.id }}/photos"><button class="btn2">Zdjęcia</button></a>
+        {% if is_contestant is null%}
+        <a href="/contest/{{ contest.id }}/sign"><button class="btn2">Zapisz się</button></a>
+        {% endif %}
+    </header>
+    Temat: {{ contest.theme }}<br>
+    Termin zgłaszania zdjęć: {{ contest.applicationsDeadline|date('Y-m-d H:i:s') }}<br>
+    Głosowanie Rozpoczyna się: {{ contest.voteStartTime|date('Y-m-d H:i:s') }}<br>
+    Możliwa liczba uczestników: {{ contest.userLimit }}, Pozostało: {{ free_places }} miejsc.<br>
+    {% if is_contestant %}
+    <form action="/contest/{{ contest.id }}/photo" method="post" enctype="multipart/form-data" style="margin-top: 25px">
+        <input  type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" name="submit" value="Dodaj plik">
+    </form>
+    {% endif %}
+    {%  if photos is not empty %}
+        <header>Twoje zgłoszenia: </header>
+        <br>Zgłoszono: {{ photos_count }}, z możliwych do zgłoszenia {{ contest.photoLimit }} zdjęć<br>
+        {% for p in photos %}
+            <div class="cont">
+                <img src="/{{ p.filepath }}" width="100%" height="auto">
+            </div>
+        {% endfor %}
+    {% elseif is_contestant %}
+        Nie zgłoszono jeszcze żadnych zdjęć!
+        {% else %}
+        Zapisz się aby dodać zdjęcia!
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+{{ contest.name }}
+{% endblock %}
+
