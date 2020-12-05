@@ -6,6 +6,7 @@
 {% endblock %}
 {% block body %}
     <header>
+        <title>{{ contest.name }}</title>
         <h1>{{ contest.name }}</h1>
         <a href="/contests">
             <button class="btn3">Powrót</button>
@@ -40,9 +41,5 @@
         {% else %}
         Zapisz się aby dodać zdjęcia!
     {% endif %}
-{% endblock %}
-
-{% block title %}
-{{ contest.name }}
 {% endblock %}
 </html>

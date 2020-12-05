@@ -152,7 +152,7 @@ class ContestController extends AbstractController
         $user_photos = $this->getDoctrine()->getRepository('App:Photo')->findBy(array('author' =>$user,'contest' => $contest));
         $user_photos_count = count($user_photos);
         if($user_photos_count < $photo_limit){
-            $target_dir = "public/Dokumenty/$id_c/";
+            $target_dir = "Dokumenty/$id_c/";
             $target_file =$target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
             if (file_exists($target_file)) {
