@@ -266,7 +266,7 @@ class ContestController extends AbstractController
             if(isset($_POST["save"])){
                 foreach($photos as $p){
                     $photo =  $this->getDoctrine()->getRepository('App:Photo')->findOneBy(array('id' => $p['id']));
-                    if(!$this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author"=>$user)) and $p['grade'] != null){
+                    if(!$this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author"=>$user)) and $_POST[$p['id']] != null){
                             $p['grade'] = $_POST[$p['id']];
                             $new_grade = new voteLog();
                             $new_grade->setAuthor($user);
@@ -274,10 +274,10 @@ class ContestController extends AbstractController
                             $new_grade->setGrade($p['grade']);
                             $date = new \DateTime('@'.strtotime('now'));
                             $new_grade->setDate($date);
-                            $entityManager->flush($new_grade);
+                            $entityManager->persist($new_grade);
                             $entityManager->flush();
 
-                    }elseif($p['grade'] != $_POST[$p['id']]){
+                    }elseif($p['grade'] != $_POST[$p['id']]  and $_POST[$p['id']] != null){
                         $new_grade = $this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author"=>$user));
                         $new_grade->setGrade($_POST[$p['id']]);
                         $date = new \DateTime('@'.strtotime('now'));
