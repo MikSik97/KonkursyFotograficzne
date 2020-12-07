@@ -247,7 +247,7 @@ class ContestController extends AbstractController
         $for_c = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
         $startTime= $for_c->getVoteStartTime();
         $endTime= $for_c->getVoteEndTime();
-        if($startTime <= new DateTime() and $endTime >= new DateTime()){
+        if($startTime <= new \DateTime('@'.strtotime('now')) and $endTime >= new \DateTime('@'.strtotime('now'))){
             $username= $this->getUser()->getUsername();
             $user = $this->getDoctrine()->getRepository('App:UserAccounts')->findOneBy(array('email' => $username));
             $userId= $user->getId();
