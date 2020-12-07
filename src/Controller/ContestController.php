@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -92,6 +93,7 @@ class ContestController extends AbstractController
             "free_places" => $free_places,
             "photos_count" => $photos_count,
             "is_contestant" => $is_contestant,
+
         ]);
     }
 
@@ -247,7 +249,7 @@ class ContestController extends AbstractController
         $for_c = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
         $startTime= $for_c->getVoteStartTime();
         $endTime= $for_c->getVoteEndTime();
-        if($startTime <= new \DateTime('@'.strtotime('now')) and $endTime >= new \DateTime('@'.strtotime('now'))){
+        if($startTime <= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw')) and $endTime >= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw'))){
             $username= $this->getUser()->getUsername();
             $user = $this->getDoctrine()->getRepository('App:UserAccounts')->findOneBy(array('email' => $username));
             $userId= $user->getId();
