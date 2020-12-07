@@ -73,16 +73,17 @@
             </tr>
         {% endfor %}
     </table>
-        <a href="/contest/{{ contest.id }}/gen_res">
-            <button class="btn2">Generuj wyniki</button>
-        </a>
+        <?<a href="/contest/{{ contest.id }}/gen_res">
+            <button onclick="confirmIt({{ contest.id }});" class="btn2">Generuj wyniki</button>
+        <?</a>
         <div class="adnotacja">
             A* -autor zdjęcią, więc go nie ocenia.
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
-        <script src="/js/swap.js"></script>
+    <script src="/js/swap.js"></script>
+    <script src="/js/confirm.js"></script>
 {% endblock %}
 
 </html>

@@ -163,7 +163,9 @@ class ContestController extends AbstractController
         $user_photos_count = count($user_photos);
         if($user_photos_count < $photo_limit){
             $target_dir = "Dokumenty/$id_c/";
-            $target_file =$target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $array = explode(".", $_FILES["fileToUpload"]["name"]);
+            $newfilename = time() . '_' . rand(100, 999) . '.' . end($array);
+            $target_file =$target_dir . $newfilename;
             $uploadOk = 1;
             if (file_exists($target_file)) {
                 $uploadOk = 0;

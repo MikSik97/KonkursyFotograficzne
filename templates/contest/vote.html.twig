@@ -2,6 +2,7 @@
     <link rel='stylesheet' href='/css/table.css' type='text/css'>
     <link rel='stylesheet' href='/css/modal.css' type='text/css'>
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel="stylesheet" href="/css/alertstyle.css" type="text/css">
 {% endblock %}
 {% block body %}
     <title>{{ contest.name }}:Głosowanie</title>
@@ -22,11 +23,23 @@
         <a><p>Tło podglądu:</p></a>
     </header>
     <div class="sitebox">
+        {% for message in app.flashes('notice') %}
+            <div class="alertS">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
         <form method="post">
             <table>
                 <th>#</th>
                 <th>Zdjęcie</th>
-                <th>Ocena</th>
+                <th>Ocena (1-6)</th>
                 {%  for p in photos %}
                     {% if p.grade is not null %}
                         <tr style="background-color: greenyellow">
