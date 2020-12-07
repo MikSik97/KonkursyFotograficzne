@@ -3,6 +3,8 @@
 {% block stylesheets %}
     <link rel='stylesheet' href='/css/table.css' type='text/css'>
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel='stylesheet' href='/css/login.css' type='text/css'>
+    <link rel="stylesheet" href="/css/alertstyle.css" type="text/css">
 {% endblock %}
 {% block body %}
     <title>Panel Organizatora</title>
@@ -18,9 +20,22 @@
         <button onclick="swap('Votes','Contest')"class="btn2"> Głosowanie</button>
     </a>
 </header>
-    <div class="box" id="Contest">
+    <div class="loginbox" id="Contest">
+        {% for message in app.flashes('notice') %}
+            <div class="alertS">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h1>Edycja Konkursu</h1>
         <form method="post">
-            <label id="first">{{ contest.id }}: {{ contest.name }}</label>
+            <br><br><br><br><br>
             <label>Temat:</label>
             <input name="theme" class="text" type="text" value="{{ contest.theme }}">
             <label>Termin zgłoszeń:</label>
@@ -29,10 +44,11 @@
             <input name="voteStart" class="text" type="datetime-local" value="{{ contest.voteStartTime|date('Y-m-d H:i:s') }}">
             <label>Koniec głosowania:</label>
             <input name="voteEnd" class="text" type="datetime-local" value="{{ contest.voteEndTime|date('Y-m-d H:i:s') }}">
-            <button class="btn2">Zapisz</button>
+            <button name="save" class="btnl">Zapisz</button>
         </form>
     </div>
-    <div id="Votes" hidden>
+    <div class="sitebox" id="Votes" hidden>
+        <h1>Tabela głosów:</h1>
     <table>
         <tr>
             <th>id User\id Zdjęcia</th>
@@ -47,11 +63,11 @@
             <th>{{ key }}</th>
             {% for grade in judges %}
                 {% if grade.id in userPhotos[key] %}
-                <td style="background-color: limegreen"> Autor</td>
+                <td style="background-color: limegreen"> A</td>
                 {% elseif grade.grade is empty %}
                     <td>0</td>
                 {% else %}
-                    <td style="background-color: limegreen"> {{ grade.id}} </td>
+                    <td style="background-color: limegreen"> {{ grade.grade}} </td>
                 {% endif %}
             {% endfor %}
             </tr>
@@ -60,6 +76,9 @@
         <a href="/contest/{{ contest.id }}/gen_res">
             <button class="btn2">Generuj wyniki</button>
         </a>
+        <div class="adnotacja">
+            A* -autor zdjęcią, więc go nie ocenia.
+        </div>
     </div>
 {% endblock %}
 {% block javascripts %}

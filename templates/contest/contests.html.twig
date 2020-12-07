@@ -11,7 +11,12 @@
     <a href="/">
         <button class="btn3">Powrót</button>
     </a>
+    <a href="/new_contest">
+        <button class="btn2">Nowy</button>
+    </a>
 </header>
+    <div class="sitebox">
+        {% if contests %}
     <table>
         <tr>
             <th>Nazwa</th>
@@ -28,5 +33,9 @@
             </tr>
         {% endfor %}
     </table>
+        {% else %}
+        <h1>brak konkursów</h1>
+        {% endif %}
+    </div>
 {% endblock %}
 </html>

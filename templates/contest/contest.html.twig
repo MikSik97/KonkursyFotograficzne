@@ -3,11 +3,12 @@
 {% block stylesheets %}
     <link rel='stylesheet' href='/css/table.css' type='text/css'>
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel="stylesheet" href="/css/alertstyle.css" type="text/css">
 {% endblock %}
 {% block body %}
     <header>
         <title>{{ contest.name }}</title>
-        <h1>{{ contest.name }}</h1>
+        <h1>Konkurs: {{ contest.name }}</h1>
         <a href="/contests">
             <button class="btn3">Powrót</button>
         </a>
@@ -18,22 +19,38 @@
         <a href="/contest/{{ contest.id }}/sign"><button class="btn2">Zapisz się</button></a>
         {% endif %}
     </header>
-    Temat: {{ contest.theme }}<br>
-    Termin zgłaszania zdjęć: {{ contest.applicationsDeadline|date('Y-m-d H:i:s') }}<br>
-    Głosowanie Rozpoczyna się: {{ contest.voteStartTime|date('Y-m-d H:i:s') }}<br>
-    Możliwa liczba uczestników: {{ contest.userLimit }}, Pozostało: {{ free_places }} miejsc.<br>
+    <div class="sitebox">
+        {% for message in app.flashes('notice') %}
+            <div class="alertS">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        <p>Temat: {{ contest.theme }}</p>
+        <p>Termin zgłaszania zdjęć: {{ contest.applicationsDeadline|date('Y-m-d H:i:s') }}</p>
+        <p> Głosowanie Rozpoczyna się: {{ contest.voteStartTime|date('Y-m-d H:i:s') }}</p>
+        <p>Możliwa liczba uczestników: {{ contest.userLimit }}, Pozostało: {{ free_places }} miejsc.</p>
+
     {% if is_contestant %}
+        <p>
     <form action="/contest/{{ contest.id }}/photo" method="post" enctype="multipart/form-data" style="margin-top: 25px">
         <input  type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" name="submit" value="Dodaj plik">
-    </form>
+    </form></p>
+
     {% endif %}
     {%  if photos is not empty %}
-        <header>Twoje zgłoszenia: </header>
-        <br>Zgłoszono: {{ photos_count }}, z możliwych do zgłoszenia {{ contest.photoLimit }} zdjęć<br>
+        <p>Twoje zgłoszenia:</p>
+        <p>Zgłoszono: {{ photos_count }}, z możliwych do zgłoszenia {{ contest.photoLimit }} zdjęć</p>
         {% for p in photos %}
             <div class="cont">
-                <img src="/{{ p.filepath }}" width="100%" height="auto">
+                <img src="/{{ p.filepath }}" style="max-height: 100%; max-width: 100%">
             </div>
         {% endfor %}
     {% elseif is_contestant %}
@@ -41,5 +58,6 @@
         {% else %}
         Zapisz się aby dodać zdjęcia!
     {% endif %}
+    </div>
 {% endblock %}
 </html>

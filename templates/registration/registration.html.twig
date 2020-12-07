@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
     <meta charset="utf-8">
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel='stylesheet' href='/css/login.css' type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <body>
+    <header>
+        <h1> Konkursy Fotograficzne</h1>
+        <a href="/">
+            <button class="btn3">Powrót</button>
+        </a>
+        <a href="{{ path('contests') }}">
+            <button class="btn2">Konkursy</button>
+        </a>
+    </header>
     {% if error is not null %}
         {{ error }}
     {% endif %}
-    <div>
+    <div class="loginbox">
         <h1>Zarejestruj się</h1>
         {{ form(form) }}
     </div>

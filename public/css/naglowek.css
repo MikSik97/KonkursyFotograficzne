@@ -5,11 +5,12 @@ h1{
     font-size:1.5em;
     color:#000000;
 }
+
 p{
-    float:left;
-    color:#000000;
+    text-align: left;
+    #color:#000000;
     margin-top: 15px;
-    font-size: 1.2em;
+    margin-left: 20px;
 }
 p2{
     float:right;
@@ -21,7 +22,6 @@ p2{
 header {
     position: sticky;
     top:0;
-    padding: 5px;
     overflow: auto;
     background-color:white;
     z-index: 10;
@@ -44,7 +44,7 @@ header a {
     border: #e70000 1px solid;
 
     float:left;
-    margin:15px 10px 15px 10px;
+    margin:10px;
     font-weight:800;
     font-size:0.8em;
 }
@@ -62,7 +62,7 @@ header a {
     cursor: pointer;
     border-radius:4px;
     border: #3274db 1px solid;
-    margin:15px 10px 15px 10px;
+    margin:10px;
 
     font-weight:800;
     font-size:0.8em;
@@ -89,7 +89,15 @@ label{
     margin: 20px 0 0 20px;
     #border: #2980b9 4px solid;
 }
-
+.loginbox{
+    position: relative;
+    background:white;
+    width:300px;
+    border-radius:6px;
+    margin: 100px auto 0 auto;
+    padding:0px 0px 70px 0px;
+    border: #2980b9 4px solid;
+}
 .text{
     background:#ecf0f1;
     border: #ccc 1px solid;
@@ -101,4 +109,25 @@ label{
     margin-left: 5px;
     font-size:1em;
     border-radius:4px;
+}
+.btn{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background:#2ecc71;
+    width:125px;
+    padding-top:5px;
+    padding-bottom:5px;
+    color:white;
+    cursor: pointer;
+    border-radius:4px;
+    border: #27ae60 1px solid;
+
+    margin: 20px 0 20px 20px;
+    font-weight:800;
+    font-size:0.8em;
+}
+.adnotacja{
+    margin-bottom: 1px;
+    margin-left : 1px;
 }

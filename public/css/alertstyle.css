@@ -1,7 +1,6 @@
 .alert {
     position: absolute;
-    top: -80px;
-    right: -20px;
+    top: 100px;
     width:300px;
     padding: 20px;
     background-color: #f44336;
@@ -11,8 +10,6 @@
 }
 .alertS{
     position: absolute;
-    top: -80px;
-    right: -20px;
     width:300px;
     padding: 20px;
     background-color: #27ae60;
@@ -22,8 +19,7 @@
 }
 .alertR{
     position: absolute;
-    top: -80px;
-    right: -20px;
+    top: 100px;
     width:300px;
     padding: 20px;
     background-color: yellow;

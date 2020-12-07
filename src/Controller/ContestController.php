@@ -120,21 +120,31 @@ class ContestController extends AbstractController
                     $contestant->setPhotoCount(0);
                     $entityManager->persist($contestant);
                     $entityManager->flush();
+                    $this->addFlash(
+                        'notice',
+                        'Zapisano do konkursu!'
+                    );
                     return $this->redirect("/contest/$id_c");
                 }else{
-                    return new Response(
-                        '<html><body>już zapisany</body></html>'
+                    $this->addFlash(
+                        'error',
+                        'już zapisany'
                     );
+                    return $this->redirect("/contest/$id_c");
                 }
             } else{
-                return new Response(
-                    '<html><body>po zapisach</body></html>'
+                $this->addFlash(
+                    'error',
+                    'po zapisach!'
                 );
+                return $this->redirect("/contest/$id_c");
             }
         }else{
-            return new Response(
-                '<html><body>brak miejsc</body></html>'
+            $this->addFlash(
+                'error',
+                'brak miejsc!'
             );
+            return $this->redirect("/contest/$id_c");
         }
     }
 
@@ -165,10 +175,11 @@ class ContestController extends AbstractController
                 mkdir($target_dir, 0700, true);
             }
             if ($uploadOk == 0) {
-                return new Response(
-                    '<html><body>nie dodano</body></html>'
+                $this->addFlash(
+                    'error',
+                    'Wystąpił błąd!'
                 );
-                #return $this->redirect("/contest/$id_c");
+                return $this->redirect("/contest/$id_c");
             } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                     $contest = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c));
@@ -185,16 +196,24 @@ class ContestController extends AbstractController
                     $contestant->setPhotoCount($contestant->getPhotoCount()+1);
                     $entityManager->persist($contestant);
                     $entityManager->flush();
-                    #return $this->redirect("/contest/$id_c");
+                    $this->addFlash(
+                        'notice',
+                        'Dodano zdjęie!'
+                    );
+                    return $this->redirect("/contest/$id_c");
                 }
-                return new Response(
-                    '<html><body>dodano</body></html>'
+                $this->addFlash(
+                    'error',
+                    'Wystąpił błąd!'
                 );
+                return $this->redirect("/contest/$id_c");
             }
         }else {
-            return new Response(
-                '<html><body>za dużo zdjęć</body></html>'
+            $this->addFlash(
+                'error',
+                'Osiągnięto limit zdjęć!'
             );
+            return $this->redirect("/contest/$id_c");
         }
     }
 
@@ -210,6 +229,7 @@ class ContestController extends AbstractController
 
         return $this->render('contest/photos.html.twig', [
             "photos" => $photos,
+            "contest"=> $contest,
         ]);
     }
 
@@ -278,40 +298,65 @@ class ContestController extends AbstractController
                 $stmt = $em->getConnection()->prepare($sql);
                 $stmt->execute();
                 $photos=  $stmt->fetchAll();
+                $this->addFlash(
+                    'notice',
+                    'Zapisano oddanie głosy!'
+                );
                 }
             return $this->render('contest/vote.html.twig', [
                 "photos" => $photos,
-            ]);
+                "contest" => $for_c,
+                ]);
         }else{
-                return new Response(
-                    '<html><body>nie zapisany</body></html>'
+                $this->addFlash(
+                    'error',
+                    'Brak praw do udziału w głosowaniu!'
                 );
+                return $this->redirect("/contest/$id_c");
             }
 
         } else {
-            return new Response(
-                '<html><body>poza terminem głosowania</body></html>'
+            $this->addFlash(
+                'error',
+                'Głosowanie aktualnie niedostępne!'
             );
+            return $this->redirect("/contest/$id_c");
         }
     }
 
     /**
      * @Route("/contest/{id_c}/organizer", name="organizer")
      * @param $id_c
+     * @param EntityManagerInterface $entityManager
      * @return Response
+     * @throws \Exception
      */
-    public function organizer($id_c){
+    public function organizer($id_c, EntityManagerInterface $entityManager){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $username= $this->getUser()->getUsername();
         $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
-        $userId= $user->getId();
-        if($this->getDoctrine()->getRepository("App:Organizer")->findOneBy(array("contest" => $id_c, "user_id"=>$user))) {
+        $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
+        if($this->getDoctrine()->getRepository("App:Organizer")->findOneBy(array("contest" => $contest, "user_id"=>$user))) {
+            if(isset($_POST['save'])){
+                $contest->setTheme($_POST['theme']);
+                $deadline = new \DateTime('@'.strtotime($_POST['deadline']));
+                $start = new \DateTime('@'.strtotime($_POST['voteStart']));
+                $end = new \DateTime('@'.strtotime($_POST['voteEnd']));
+                $contest->setApplicationsDeadline($deadline);
+                $contest->setVoteStartTime($start);
+                $contest->setVoteEndTime($end);
+                $entityManager->persist($contest);
+                $entityManager->flush();
+                $this->addFlash(
+                    'notice',
+                    'zapisano zmiany!'
+                );
+            }
             # Macierz sędzia/ oceny
-            $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
             $my_contestants= $contest->getMyContestants();
             $my_photos =$contest->getAppliedPhotos();
-            $grades = [];
             $user_photos= [];
+            $grades = [];
             foreach($my_contestants as $contestant){
                 $c =$contestant->getUserId();
                 $contestantId= $c->getId();
@@ -347,9 +392,11 @@ class ContestController extends AbstractController
             ]);
 
         }else{
-            return new Response(
-                '<html><body>brak praw do organizacji</body></html>'
+            $this->addFlash(
+                'error',
+                'Brak praw dostępu!'
             );
+            return $this->redirect("/contest/$id_c");
         }
     }
 
@@ -386,9 +433,11 @@ class ContestController extends AbstractController
             }
             return $this->redirect("/contest/$id_c/results");
         } else{
-            return new Response(
-                '<html><body>brak praw do organizacji</body></html>'
+            $this->addFlash(
+                'error',
+                'Brak praw dostępu!'
             );
+            return $this->redirect("/contest/$id_c");
         }
     }
 

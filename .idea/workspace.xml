@@ -11,8 +11,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="918e5a5c-8711-49b4-be7a-698c27e979d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201207115357.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/29/use_case1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/30/003.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/30/033.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/30/asdqwe111.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/30/use_case1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/30/use_case2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/30/use_case3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/31/use_case2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/clear.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/color.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/alertstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/alertstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/naglowek.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/naglowek.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/table.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ContestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Contest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Contest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/contest/contest.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/contest.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contest/contests.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/contests.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contest/organizer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/organizer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contest/photos.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/photos.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contest/vote.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/vote.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/registration.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,11 +48,36 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Entity/UserAccounts.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+  </component>
+  <component name="IlluminatedCloudWorkspaceSettings">
+    <option name="projectWorkspaceSettings">
+      <ProjectWorkspaceSettings>
+        <option name="soqlQuerySettings">
+          <SoqlQuerySettings>
+            <option name="savedDocuments">
+              <list>
+                <SoqlQuerySavedDocument>
+                  <option name="name" value="SOQL Query 1" />
+                </SoqlQuerySavedDocument>
+              </list>
+            </option>
+            <option name="selectedSavedDocumentIndex" value="0" />
+          </SoqlQuerySettings>
+        </option>
+      </ProjectWorkspaceSettings>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -128,12 +178,12 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\ProjektySymfony\konkursy_fotograficzne\public" />
-      <recent name="C:\ProjektySymfony\konkursy_fotograficzne\public\css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\ProjektySymfony" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\ProjektySymfony\konkursy_fotograficzne\public\css" />
+      <recent name="C:\ProjektySymfony\konkursy_fotograficzne\public" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -160,7 +210,12 @@
       <workItem from="1607081909490" duration="742000" />
       <workItem from="1607083453060" duration="12077000" />
       <workItem from="1607102093130" duration="1267000" />
-      <workItem from="1607167829925" duration="12218000" />
+      <workItem from="1607167829925" duration="13033000" />
+      <workItem from="1607189931100" duration="1319000" />
+      <workItem from="1607256415301" duration="1643000" />
+      <workItem from="1607258782629" duration="10851000" />
+      <workItem from="1607286889034" duration="1065000" />
+      <workItem from="1607340063374" duration="11239000" />
     </task>
     <servers />
   </component>

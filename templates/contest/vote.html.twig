@@ -1,40 +1,55 @@
-{% extends 'base.html.twig' %}
 {% block stylesheets %}
     <link rel='stylesheet' href='/css/table.css' type='text/css'>
     <link rel='stylesheet' href='/css/modal.css' type='text/css'>
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
 {% endblock %}
 {% block body %}
+    <title>{{ contest.name }}:Głosowanie</title>
     <header>
-        <h1> Wyniki</h1>
-        <a href="/contests">
+        <h1> Głosowanie</h1>
+        <a href="/contest/{{ contest.id }}">
             <button class="btn3">Powrót</button>
         </a>
+        <a>
+            <button style="background-color: white; padding: 12px; border-color: black" class="btn2" onclick="changeModalColor('white')"></button>
+        </a>
+        <a>
+            <button style="background-color:black; padding: 12px; border-color: black" class="btn2" onclick="changeModalColor('black')"></button>
+        </a>
+       <a>
+           <button class="btn2" onclick="changeModalColor('rgba(0,0,0,0.88)')">domyślny</button>
+       </a>
+        <a><p>Tło podglądu:</p></a>
     </header>
-    <form method="post">
-        <table>
-            <th>#</th>
-            <th>Zdjęcie</th>
-            <th>Ocena</th>
-            {%  for p in photos %}
-                {% if p.grade is not null %}
-                    <tr style="background-color: greenyellow">
-                {% else %}
-                    <tr>
-                {% endif %}
-                <td>{{ p.id }}</td>
-                <td><div class="box">
-                        <img onclick="document.getElementById({{ p.id }}).style.display='block'" src="/{{ p.filepath }}" alt="poof" width="100%">
-                <td><input type="number"  name="{{ p.id }}" min="1" max="6" value="{{ p.grade }}"></td>
-                </tr>
-            <div id="{{ p.id }}" class="modal">
-                <button class="close" onclick="document.getElementById({{ p.id }}).style.display='none'">&times;</button>
-                <img  class="modal-content" id="full_img" src="/{{ p.filepath }}" alt="zdjęcię konkursowe">
-            </div>
-            {% endfor %}
-        </table>
-        <input class="btn2" style="position: sticky; bottom:10px; float: right; width: 125px" type="submit" value="Zapisz zmiany!" name="save">
-    </form>
+    <div class="sitebox">
+        <form method="post">
+            <table>
+                <th>#</th>
+                <th>Zdjęcie</th>
+                <th>Ocena</th>
+                {%  for p in photos %}
+                    {% if p.grade is not null %}
+                        <tr style="background-color: greenyellow">
+                    {% else %}
+                        <tr>
+                    {% endif %}
+                    <td>{{ p.id }}</td>
+                    <td><div class="box">
+                            <img onclick="document.getElementById({{ p.id }}).style.display='block';event.preventDefault();" src="/{{ p.filepath }}" alt="poof" width="100%">
+                    <td><input type="number"  name="{{ p.id }}" min="1" max="6" value="{{ p.grade }}"></td>
+                    </tr>
+                <div id="{{ p.id }}" class="modal">
+                    <button type="button" class="close" onclick="document.getElementById({{ p.id }}).style.display='none'">&times;</button>
+                    <img  class="modal-content" id="full_img" src="/{{ p.filepath }}" alt="zdjęcię konkursowe" style="max-height: 95%; max-width: 95%">
+                </div>
+                {% endfor %}
+            </table>
+            <input class="btn2" style="position: sticky; bottom:10px; float: right; width: 125px" type="submit" value="Zapisz zmiany!" name="save">
+        </form>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="/js/color.js"></script>
 {% endblock %}
 
 

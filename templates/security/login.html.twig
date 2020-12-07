@@ -1,17 +1,32 @@
-{# templates/security/login.html.twig #}
-{# ... you will probably extend your base template, like base.html.twig #}
+{% block stylesheet %}
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel='stylesheet' href='/css/login.css' type='text/css'>
+{% endblock %}
 <body>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<header>
+    <h1> Konkursy Fotograficzne</h1>
+    <a href="/">
+        <button class="btn3">Powrót</button>
+    </a>
+    <a href="{{ path('contests') }}">
+        <button class="btn2">Konkursy</button>
+    </a>
+</header>
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
-        {#  <input type="hidden" name="_target_path" value="/" />#}
-        <button type="submit">login</button>
-    </form>
+    <div class="loginbox">
+        <h1>Logowanie:</h1>
+        <form method="post">
+            <input type="email" name="_username" value="Email" onFocus="clear_field(this, 'Email');"onblur="field_blur(this, 'Email');" class="email" />
+
+            <input type="password" name="_password" value="Email" onFocus="clear_field(this, 'Email');"onblur="field_blur(this, 'Email');" class="email" />
+            <button class="btnl" type="submit">Zaloguj!</button>
+            <a href="/registration"><div id="btnl2">Rejestracja</div></a> <!-- End Btn2 -->
+        </form>
+    </div> <!-- End Box -->
 </body>
+{% block javascripts %}
+    <script src="/js/clear.js"></script>
+{% endblock %}

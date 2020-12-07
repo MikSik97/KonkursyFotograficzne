@@ -1,16 +1,23 @@
-{% extends 'base.html.twig' %}
 {% block stylesheets %}
     <link rel='stylesheet' href='/css/table.css' type='text/css'>
     <link rel='stylesheet' href='/css/modal.css' type='text/css'>
+    <link rel="stylesheet" href="/css/naglowek.css" type="text/css">
 {% endblock %}
-{% block body %}
+
+<body style="background-color: white">
+    <header>
+        <h1>Zgłoszone zdjęcia</h1>
+        <a href="/contest/{{ contest.id }}">
+            <button class="btn3">Powrót</button>
+        </a>
+    </header>
     {% for p in photos %}
         <div class="cont">
-            <img onclick="document.getElementById({{ p.id }}).style.display='block'" src="/{{ p.filepath }}"width="100%" height="auto">
+            <img onclick="document.getElementById({{ p.id }}).style.display='block'" src="/{{ p.filepath }}" style="max-height: 100%; max-width: 100%">
         </div>
         <div id="{{ p.id }}" class="modal">
             <button class="close" onclick="document.getElementById({{ p.id }}).style.display='none'">&times;</button>
             <img  class="modal-content" id="full_img" src="/{{ p.filepath }}" alt="zdjęcię konkursowe" style="max-height: 95%; max-width: 95%">
         </div>
     {% endfor %}
-{% endblock %}
+</body>
