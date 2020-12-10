@@ -11,9 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="918e5a5c-8711-49b4-be7a-698c27e979d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ContestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contest/organizer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/organizer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contest/new_contest.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/new_contest.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +191,7 @@
       <workItem from="1607286889034" duration="1065000" />
       <workItem from="1607340063374" duration="22388000" />
       <workItem from="1607514217947" duration="9363000" />
-      <workItem from="1607597892898" duration="10123000" />
+      <workItem from="1607597892898" duration="10523000" />
     </task>
     <servers />
   </component>
