@@ -38,6 +38,10 @@
             <br><br><br><br><br>
             <label>Temat:</label>
             <input name="theme" class="text" type="text" value="{{ contest.theme }}">
+            <label>Limit uczestników:</label>
+            <input name="user_limit" class="text" type="text" value="{{ contest.userLimit }}">
+            <label>Limit zdjęć:</label>
+            <input name="photo_limit" class="text" type="text" value="{{ contest.photoLimit }}">
             <label>Termin zgłoszeń:</label>
             <input name="deadline" class="text" type="datetime-local" value="{{ contest.applicationsDeadline|date('Y-m-d H:i:s') }}">
             <label>Początek głosowania:</label>
