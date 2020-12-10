@@ -400,8 +400,8 @@ class ContestController extends AbstractController
         if($this->getDoctrine()->getRepository("App:Organizer")->findOneBy(array("contest" => $contest, "user_id"=>$user))) {
             if(isset($_POST['save'])){
                 $contest->setTheme($_POST['theme']);
-                $contest->setUserLimit($_POST['photo_limit']);
-                $contest->setPhotoLimit($_POST['user_limit']);
+                $contest->setUserLimit($_POST['user_limit']);
+                $contest->setPhotoLimit($_POST['photo_limit']);
                 $deadline = new \DateTime('@'.strtotime($_POST['deadline']));
                 $start = new \DateTime('@'.strtotime($_POST['voteStart']));
                 $end = new \DateTime('@'.strtotime($_POST['voteEnd']));
