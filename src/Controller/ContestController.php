@@ -33,31 +33,38 @@ class ContestController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $username= $this->getUser()->getUsername();
 
-        $form = $this->createForm(ContestType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            if(!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $form->get('name')->getData()))){
-            $contest = new Contest();
-            $contest= $form->getData();
-            $entityManager->persist($contest);
-            $entityManager->flush();
 
-            $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
-            $c = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $form->get('name')->getData()));
-            $organizer = new Organizer();
-            $organizer->setUserId($user);
-            $organizer->setContest($c);
-            $entityManager->persist($organizer);
-            $entityManager->flush();
+        if (isset($_POST['save'])) {
+            if(!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $_POST['name']))){
+                $contest = new Contest();
+                $contest->setName($_POST['name']);
+                $contest->setTheme($_POST['theme']);
+                $contest->setUserLimit($_POST['user_limit']);
+                $contest->setPhotoLimit($_POST['photo_limit']);
+                $deadline = new \DateTime('@'.strtotime($_POST['deadline']));
+                $start = new \DateTime('@'.strtotime($_POST['voteStart']));
+                $end = new \DateTime('@'.strtotime($_POST['voteEnd']));
+                $contest->setApplicationsDeadline($deadline);
+                $contest->setVoteStartTime($start);
+                $contest->setVoteEndTime($end);
+                $contest->setUseForm($_POST['form']);
+                $entityManager->persist($contest);
+                $entityManager->flush();
+
+                $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
+                $c = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $_POST['name']));
+                $organizer = new Organizer();
+                $organizer->setUserId($user);
+                $organizer->setContest($c);
+                $entityManager->persist($organizer);
+                $entityManager->flush();
             return $this->redirect('/');
             } else{
                 return $this->render('contest/new_contest.html.twig', [
-                    'form' => $form->createView(),
                 ]);
             }
         }
         return $this->render('contest/new_contest.html.twig', [
-            'form' => $form->createView(),
         ]);
     }
     /**
@@ -246,9 +253,9 @@ class ContestController extends AbstractController
      */
     public function voteInContest($id_c, EntityManagerInterface $entityManager){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $for_c = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
-        $startTime= $for_c->getVoteStartTime();
-        $endTime= $for_c->getVoteEndTime();
+        $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
+        $startTime= $contest->getVoteStartTime();
+        $endTime= $contest->getVoteEndTime();
         if($startTime <= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw')) and $endTime >= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw'))){
             $username= $this->getUser()->getUsername();
             $user = $this->getDoctrine()->getRepository('App:UserAccounts')->findOneBy(array('email' => $username));
@@ -267,49 +274,99 @@ class ContestController extends AbstractController
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();
             $photos=  $stmt->fetchAll();
-            if(isset($_POST["save"])){
-                foreach($photos as $p){
-                    $photo =  $this->getDoctrine()->getRepository('App:Photo')->findOneBy(array('id' => $p['id']));
-                    if(!$this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author"=>$user)) and $_POST[$p['id']] != null){
+            if($contest->getUseForm()){
+                if (isset($_POST["save"])) {
+                    foreach ($photos as $p) {
+                        $photo = $this->getDoctrine()->getRepository('App:Photo')->findOneBy(array('id' => $p['id']));
+                        if (!$this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author" => $user))
+                            and $_POST['comp' . $p['id']] !=null  and $_POST['tec' . $p['id']] !=null and $_POST['the' . $p['id']] !=null and $_POST['sub' . $p['id']] !=null) {
+                            $score = $_POST['comp' . $p['id']] + $_POST['tec' . $p['id']] + $_POST['the' . $p['id']] + $_POST['sub' . $p['id']];
+                            $new_grade = new voteLog();
+                            $new_grade->setAuthor($user);
+                            $new_grade->setPhoto($photo);
+                            $new_grade->setGrade($score);
+                            $date = new \DateTime('@' . strtotime('now'));
+                            $new_grade->setDate($date);
+                            $entityManager->persist($new_grade);
+                            $entityManager->flush();
+                            $this->addFlash(
+                                'notice',
+                                'Zapisano oceny!'
+                            );
+                        }elseif($_POST['comp' . $p['id']] !=null  and $_POST['tec' . $p['id']] !=null and $_POST['the' . $p['id']] !=null and $_POST['sub' . $p['id']] !=null){
+                            $new_grade= $this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author" => $user));
+                            $score = $_POST['comp' . $p['id']] + $_POST['tec' . $p['id']] + $_POST['the' . $p['id']] + $_POST['sub' . $p['id']];
+                            $new_grade->setGrade($score);
+                            $date = new \DateTime('@' . strtotime('now'));
+                            $new_grade->setDate($date);
+                            $entityManager->persist($new_grade);
+                            $entityManager->flush();
+                            $this->addFlash(
+                                'notice',
+                                'Zapisano oceny!'
+                            );
+                        }
+
+                    }
+                    $sql = " 
+                        select p.id, p.filepath, vl.grade
+                        from photo p left  join vote_log vl
+                            on
+                             (p.id = vl.photo_id and vl.author_id= $userId)
+                            or  (p.id = vl.photo_id and vl.author_id IS NULL)
+                             where contest_id =$id_c and p.author_id != $userId;
+            ";
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute();
+                    $photos = $stmt->fetchAll();
+
+                }
+            }else {
+                if (isset($_POST["save"])) {
+                    foreach ($photos as $p) {
+                        $photo = $this->getDoctrine()->getRepository('App:Photo')->findOneBy(array('id' => $p['id']));
+                        if (!$this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author" => $user)) and $_POST[$p['id']] != null) {
                             $p['grade'] = $_POST[$p['id']];
                             $new_grade = new voteLog();
                             $new_grade->setAuthor($user);
                             $new_grade->setPhoto($photo);
                             $new_grade->setGrade($p['grade']);
-                            $date = new \DateTime('@'.strtotime('now'));
+                            $date = new \DateTime('@' . strtotime('now'));
                             $new_grade->setDate($date);
                             $entityManager->persist($new_grade);
                             $entityManager->flush();
 
-                    }elseif($p['grade'] != $_POST[$p['id']]  and $_POST[$p['id']] != null){
-                        $new_grade = $this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author"=>$user));
-                        $new_grade->setGrade($_POST[$p['id']]);
-                        $date = new \DateTime('@'.strtotime('now'));
-                        $new_grade->setDate($date);
-                        $entityManager->persist($new_grade);
-                        $entityManager->flush();
+                        } elseif ($p['grade'] != $_POST[$p['id']] and $_POST[$p['id']] != null) {
+                            $new_grade = $this->getDoctrine()->getRepository("App:VoteLog")->findOneBy(array("photo" => $photo, "author" => $user));
+                            $new_grade->setGrade($_POST[$p['id']]);
+                            $date = new \DateTime('@' . strtotime('now'));
+                            $new_grade->setDate($date);
+                            $entityManager->persist($new_grade);
+                            $entityManager->flush();
+                        }
                     }
+                    $sql = " 
+                        select p.id, p.filepath, vl.grade
+                        from photo p left  join vote_log vl
+                            on
+                             (p.id = vl.photo_id and vl.author_id= $userId)
+                            or  (p.id = vl.photo_id and vl.author_id IS NULL)
+                             where contest_id =$id_c and p.author_id != $userId;
+            ";
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute();
+                    $photos = $stmt->fetchAll();
+                    $this->addFlash(
+                        'notice',
+                        'Zapisano oddanie głosy!'
+                    );
                 }
-                $sql = " 
-                    select p.id, p.filepath, vl.grade
-                    from photo p left  join vote_log vl
-                        on
-                         (p.id = vl.photo_id and vl.author_id= $userId)
-                        or  (p.id = vl.photo_id and vl.author_id IS NULL)
-                         where contest_id =$id_c and p.author_id != $userId;
-        ";
-                $em = $this->getDoctrine()->getManager();
-                $stmt = $em->getConnection()->prepare($sql);
-                $stmt->execute();
-                $photos=  $stmt->fetchAll();
-                $this->addFlash(
-                    'notice',
-                    'Zapisano oddanie głosy!'
-                );
-                }
+            }
             return $this->render('contest/vote.html.twig', [
                 "photos" => $photos,
-                "contest" => $for_c,
+                "contest" => $contest,
                 ]);
         }else{
                 $this->addFlash(

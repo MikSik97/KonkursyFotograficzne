@@ -34,7 +34,8 @@
         {% endfor %}
         <p>Temat: {{ contest.theme }}</p>
         <p>Termin zgłaszania zdjęć: {{ contest.applicationsDeadline|date('Y-m-d H:i:s') }}</p>
-        <p> Głosowanie Rozpoczyna się: {{ contest.voteStartTime|date('Y-m-d H:i:s') }}</p>
+        <p> Głosowanie rozpoczyna się: {{ contest.voteStartTime|date('Y-m-d H:i:s') }}</p>
+        <p> Głosowanie kończy się: {{ contest.voteEndTime|date('Y-m-d H:i:s') }}</p>
         <p>Możliwa liczba uczestników: {{ contest.userLimit }}, Pozostało: {{ free_places }} miejsc.</p>
 
     {% if is_contestant %}

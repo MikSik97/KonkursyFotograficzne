@@ -75,6 +75,11 @@ class Contest
      */
     private $my_judges;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $useForm;
+
     public function __construct()
     {
         $this->my_organizers = new ArrayCollection();
@@ -285,6 +290,18 @@ class Contest
                 $myJudge->setContest(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUseForm(): ?bool
+    {
+        return $this->useForm;
+    }
+
+    public function setUseForm(bool $useForm): self
+    {
+        $this->useForm = $useForm;
 
         return $this;
     }

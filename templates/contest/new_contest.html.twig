@@ -1,9 +1,39 @@
-{# templates/security/login.html.twig #}
-{# ... you will probably extend your base template, like base.html.twig #}
+
 {% block stylesheet %}
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel='stylesheet' href='/css/login.css' type='text/css'>
 {% endblock %}
 <body>
-{{ form(form) }}
+<header>
+    <h1> Konkursy Fotograficzne</h1>
+    <a href="/">
+        <button class="btn3">Powrót</button>
+    </a>
+    <a href="{{ path('contests') }}">
+        <button class="btn2">Konkursy</button>
+    </a>
+</header>
+<div class="loginbox">
+    <form method="post">
+        <br><br>
+        <label>Nazwa konkursu:</label>
+        <input name="name" class="text" type="text">
+        <label>Temat:</label>
+        <input name="theme" class="text" type="text">
+        <label>Limit uczestników:</label>
+        <input name="user_limit" class="text" type="number">
+        <label>Limit zdjęć:</label>
+        <input name="photo_limit" class="text" type="number">
+        <label>Termin zgłoszeń:</label>
+        <input name="deadline" class="text" type="datetime-local" value="10.12.2020 00:00:00">
+        <label>Początek głosowania:</label>
+        <input name="voteStart" class="text" type="datetime-local" value="10.12.2020 00:00:00">
+        <label>Koniec głosowania:</label>
+        <input name="voteEnd" class="text" type="datetime-local" value="10.12.2020 00:00:00">
+        <label>Formularz głosowania:</label>
+        <input name="form" type="checkbox">
+        <button name="save" class="btnl">Stwórz konkurs</button>
+    </form>
+</div>
+
 </body>

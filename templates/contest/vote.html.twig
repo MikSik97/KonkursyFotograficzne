@@ -22,24 +22,33 @@
        </a>
         <a><p>Tło podglądu:</p></a>
     </header>
-    <div class="sitebox">
-        {% for message in app.flashes('notice') %}
-            <div class="alertS">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.flashes('error') %}
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                {{ message }}
-            </div>
-        {% endfor %}
+
         <form method="post">
+            <div class="sitebox">
+                {% for message in app.flashes('notice') %}
+                    <div class="alertS">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        {{ message }}
+                    </div>
+                {% endfor %}
             <table>
                 <th>#</th>
                 <th>Zdjęcie</th>
+                {% if contest.useForm %}
+                    <th>Ocena kompozycji (0-2)</th>
+                    <th>Ocena techniczna (0-2)</th>
+                    <th>Zgodność z tematem (0-2)</th>
+                    <th>Ocena własna (0-4)</th>
+                    <th>Ocena końcowa (0-10)</th>
+                {% else %}
                 <th>Ocena (1-6)</th>
+                {% endif %}
                 {%  for p in photos %}
                     {% if p.grade is not null %}
                         <tr style="background-color: greenyellow">
@@ -47,9 +56,34 @@
                         <tr>
                     {% endif %}
                     <td>{{ p.id }}</td>
-                    <td><div class="box">
+                    <td>
+                        <div class="box">
                             <img onclick="document.getElementById({{ p.id }}).style.display='block';" src="/{{ p.filepath }}" alt="poof" width="100%">
-                    <td><input type="number"  name="{{ p.id }}" min="1" max="6" value="{{ p.grade }}"></td>
+                        </div>
+                    </td>
+                    {% if contest.useForm %}
+                        <td>
+                            <input type="number"  name="comp{{ p.id }}" min="0" max="2">
+                        </td>
+                        <td>
+                            <input type="number"  name="tec{{ p.id }}" min="0" max="2">
+                        </td>
+                        <td>
+                            <input type="number"  name="the{{ p.id }}" min="0" max="2">
+                        </td>
+                        <td>
+                            <input type="number"  name="sub{{ p.id }}" min="0" max="4">
+                        </td>
+                        {% if  p.grade is not null %}
+                            <td><p>{{ p.grade }}</p></td>
+                        {% else %}
+                            <td><p>nie oceniono</p></td>
+                        {% endif %}
+                    {% else %}
+                    <td>
+                        <input type="number"  name="{{ p.id }}" min="1" max="6" value="{{ p.grade }}">
+                    </td>
+                    {% endif%}
                     </tr>
                 <div id="{{ p.id }}" class="modal">
                     <button type="button" class="close" onclick="document.getElementById({{ p.id }}).style.display='none'">&times;</button>
@@ -57,9 +91,9 @@
                 </div>
                 {% endfor %}
             </table>
-            <input class="btn2" style="position: sticky; bottom:10px; float: right; width: 125px" type="submit" value="Zapisz zmiany!" name="save">
-        </form>
     </div>
+    <input class="btn2" style="position: sticky; bottom:20px; float: right; width: 125px; margin-right: 5%;" type="submit" value="Zapisz zmiany!" name="save">
+    </form>
 {% endblock %}
 {% block javascripts %}
     <script src="/js/color.js"></script>

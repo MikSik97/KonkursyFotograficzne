@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Contest;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,6 +25,7 @@ class ContestType extends AbstractType
             ->add('vote_start_time',DateTimeType::class)
             ->add('vote_end_time',DateTimeType::class)
             ->add('theme',TextType::class)
+            ->add('use_form', CheckboxType::class)
             ->add('save', SubmitType::class)
         ;
     }

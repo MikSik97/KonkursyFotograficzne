@@ -24,7 +24,7 @@ class UserAccountsType extends AbstractType
                 'second_options' => ['label' => 'Repeat password']
 
             ])
-            ->add('register', SubmitType::class);
+            ->add('Zarejestruj', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

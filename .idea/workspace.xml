@@ -11,9 +11,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="918e5a5c-8711-49b4-be7a-698c27e979d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201209165847.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201209170427.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/7/1607600222_710.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/7/1607600234_780.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/7/1607600370_541.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/7/1607600380_987.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/7/1607604413_995.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Dokumenty/7/1607604424_859.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201104161711.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201104161711.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/table.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ContestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Contest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Contest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/VoteLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/VoteLog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ContestType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ContestType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserAccountsType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserAccountsType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/contest/contest.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/contest.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contest/new_contest.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/new_contest.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contest/vote.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contest/vote.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/registration.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +166,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -191,7 +208,9 @@
       <workItem from="1607256415301" duration="1643000" />
       <workItem from="1607258782629" duration="10851000" />
       <workItem from="1607286889034" duration="1065000" />
-      <workItem from="1607340063374" duration="20119000" />
+      <workItem from="1607340063374" duration="22388000" />
+      <workItem from="1607514217947" duration="9363000" />
+      <workItem from="1607597892898" duration="8624000" />
     </task>
     <servers />
   </component>
@@ -238,10 +257,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604586286499" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1607546871399">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607546871399" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1604570955613">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604570955613" />
+    <state x="486" y="0" width="1450" height="1027" key="dock-window-1" timestamp="1607602171132">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="486" y="0" width="1450" height="1027" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1607602171132" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605694996648">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
