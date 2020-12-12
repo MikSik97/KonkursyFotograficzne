@@ -39,8 +39,11 @@ class RegistrationController extends AbstractController
 
                     $email = $this->getDoctrine()->getRepository('App:UserAccounts')->findOneBySomeField($userAccount->getEmail());
                     if ($email) {
+                        $this->addFlash(
+                            'error',
+                            'podany email posiada już konto!'
+                        );
                         return $this->render('registration/registration.html.twig', [
-                            "error" => "podany email posiada już konto"
                         ]);
                     }
 
@@ -52,18 +55,23 @@ class RegistrationController extends AbstractController
                     );
                     return $this->redirect("/");
                 } else {
+                    $this->addFlash(
+                        'error',
+                        'podano różne hasła!'
+                    );
                     return $this->render('registration/registration.html.twig', [
-                        "error" => "podano różne hasła"
                     ]);
                 }
             } else {
+                $this->addFlash(
+                    'error',
+                    'uzupełnij wszystkie pola'
+                );
                 return $this->render('registration/registration.html.twig', [
-                    "error" => "uzupełnij wszystkie pola"
                 ]);
             }
         }else{
             return $this->render('registration/registration.html.twig', [
-                "error" => null,
             ]);
         }
     }

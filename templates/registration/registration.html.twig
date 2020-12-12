@@ -16,12 +16,18 @@
             <button class="btn2">Konkursy</button>
         </a>
     </header>
-    {% if error is not null %}
-    <div class="alertS">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        {{ error }}
-    </div>
-    {% endif %}
+        {% for message in app.flashes('notice') %}
+            <div class="alertS">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
     <div class="loginbox">
         {% for message in app.flashes('notice') %}
             <div class="alertS">
