@@ -6,7 +6,11 @@
 {% endblock %}
     <body>
         <header>
+            {% if username is null %}
             <h1> Konkursy Fotograficzne</h1>
+            {% else %}
+                <h1> Konkursy Fotograficzne, witaj: {{ username }}</h1>
+            {% endif %}
             <a href="{{ path('app_logout') }}">
                 <button class="btn3">Wyloguj</button>
             </a>

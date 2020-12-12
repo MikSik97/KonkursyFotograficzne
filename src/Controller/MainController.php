@@ -13,6 +13,13 @@ class MainController extends AbstractController
      */
     public function home()
     {
-        return $this->render('main/home.html.twig');
+        if($this->getUser()){
+            $username = $this->getUser()->getUsername();
+        } else{
+            $username = null;
+        }
+        return $this->render('main/home.html.twig',[
+            'username' => $username,
+            ]);
     }
 }

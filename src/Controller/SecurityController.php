@@ -20,14 +20,17 @@ class SecurityController extends AbstractController
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-
+            if ($error) {
+                $this->addFlash(
+                    'error',
+                    'podano błędne dane logowania'
+                );
+            }
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
         ));
     }
 
@@ -37,6 +40,17 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-    }
 
+    }
+    /**
+     * @Route("/logout_message", name="logout_message")
+     */
+    public function logoutMessage()
+    {
+        $this->addFlash(
+            'notice',
+            'wylogowano!'
+        );
+        return $this->redirect('/');
+    }
 }
