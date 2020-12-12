@@ -18,7 +18,6 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
-        #$form = $this->createForm(LoginType::class);
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -29,7 +28,6 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
-            #'form'          =>$form->createView()
         ));
     }
 

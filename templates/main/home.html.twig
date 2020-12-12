@@ -2,6 +2,7 @@
 <html>
 {% block stylesheet %}
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
+    <link rel="stylesheet" href="/css/alertstyle.css" type="text/css">
 {% endblock %}
     <body>
         <header>
@@ -22,5 +23,17 @@
                 <button class="btn2">rejestracja</button>
             </a>
     </header>
+        {% for message in app.flashes('notice') %}
+            <div class="alertS">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
     </body>
 </html>

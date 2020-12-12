@@ -28,32 +28,43 @@ class RegistrationController extends AbstractController
     public function registration(request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager, Session $session)
     {
 
-        $form = $this->createForm(UserAccountsType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userAccount = $form->getData();
-            $password = $passwordEncoder->encodePassword($userAccount, $form->get("password")->getData());
-            $userAccount->setPassword($password);
-            $userAccount->setRoles($userAccount->getRoles());
+        if(isset($_POST['save'])) {
+            if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
+                if ($_POST['password'] == $_POST['password2']) {
+                    $userAccount = new UserAccounts();
+                    $userAccount->setEmail($_POST['username']);
+                    $password = $passwordEncoder->encodePassword($userAccount, $_POST["password"]);
+                    $userAccount->setPassword($password);
+                    $userAccount->setRoles($userAccount->getRoles());
 
-            $email = $this->getDoctrine()->getRepository('App:UserAccounts')->findOneBySomeField($userAccount->getEmail());
-            if($email){
+                    $email = $this->getDoctrine()->getRepository('App:UserAccounts')->findOneBySomeField($userAccount->getEmail());
+                    if ($email) {
+                        return $this->render('registration/registration.html.twig', [
+                            "error" => "podany email posiada już konto"
+                        ]);
+                    }
+
+                    $entityManager->persist($userAccount);
+                    $entityManager->flush();
+                    $this->addFlash(
+                        'notice',
+                        'Założono konto!'
+                    );
+                    return $this->redirect("/");
+                } else {
+                    return $this->render('registration/registration.html.twig', [
+                        "error" => "podano różne hasła"
+                    ]);
+                }
+            } else {
                 return $this->render('registration/registration.html.twig', [
-                    'form' => $form->createView(),
-                    "error"=> "podany email posiada już konto"
+                    "error" => "uzupełnij wszystkie pola"
                 ]);
-            }else{
-
-            $entityManager->persist($userAccount);
-            $entityManager->flush();
-                return $this->redirect("/");
             }
+        }else{
+            return $this->render('registration/registration.html.twig', [
+                "error" => null
+            ]);
         }
-
-        return $this->render('registration/registration.html.twig', [
-            'form' => $form->createView(),
-            "error"=> null
-        ]);
     }
-
 }

@@ -1,6 +1,7 @@
 {% block stylesheet %}
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
     <link rel='stylesheet' href='/css/login.css' type='text/css'>
+    <link rel="stylesheet" href='css/alertstyle.css' type="text/css">
 {% endblock %}
 <body>
 <header>
@@ -13,7 +14,10 @@
     </a>
 </header>
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
     {% endif %}
 
     <div class="loginbox">

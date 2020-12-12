@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
     <meta charset="utf-8">
+    {% block stylesheet %}
     <link rel='stylesheet' href='/css/naglowek.css' type='text/css'>
     <link rel='stylesheet' href='/css/login.css' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href='css/alertstyle.css' type="text/css">
+    {% endblock %}
     <body>
     <header>
         <h1> Konkursy Fotograficzne</h1>
@@ -15,10 +17,38 @@
         </a>
     </header>
     {% if error is not null %}
+    <div class="alertS">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         {{ error }}
+    </div>
     {% endif %}
     <div class="loginbox">
-        {{ form(form) }}
-    </div>
+        {% for message in app.flashes('notice') %}
+            <div class="alertS">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h1>Rejestracja:</h1>
+        <form method="post">
+            <br><br><br><br>
+            <label>Email:</label>
+            <input type="email" name="username" value="Email" onFocus="clear_field(this, 'Email');"onblur="field_blur(this, 'Email');" class="email" />
+            <label>Hasło:</label>
+            <input type="password" name="password" value="Email" onFocus="clear_field(this, 'Email');"onblur="field_blur(this, 'Email');" class="email" />
+            <label>Potwierdź hasło:</label>
+            <input type="password" name="password2" value="Email" onFocus="clear_field(this, 'Email');"onblur="field_blur(this, 'Email');" class="email" />
+            <button name="save" class="btnl" type="submit">Zarejestruj!</button>
+        </form>
+    </div> <!-- End Box -->
     </body>
+    {% block javascripts %}
+        <script src="/js/clear.js"></script>
+    {% endblock %}
 </html>

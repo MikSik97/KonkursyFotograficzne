@@ -36,29 +36,52 @@ class ContestController extends AbstractController
 
         if (isset($_POST['save'])) {
             if(!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $_POST['name']))){
-                $contest = new Contest();
-                $contest->setName($_POST['name']);
-                $contest->setTheme($_POST['theme']);
-                $contest->setUserLimit($_POST['user_limit']);
-                $contest->setPhotoLimit($_POST['photo_limit']);
-                $deadline = new \DateTime('@'.strtotime($_POST['deadline']));
-                $start = new \DateTime('@'.strtotime($_POST['voteStart']));
-                $end = new \DateTime('@'.strtotime($_POST['voteEnd']));
-                $contest->setApplicationsDeadline($deadline);
-                $contest->setVoteStartTime($start);
-                $contest->setVoteEndTime($end);
-                $contest->setUseForm($_POST['form']);
-                $entityManager->persist($contest);
-                $entityManager->flush();
+                if(!empty($_POST['name']) and  !empty($_POST['theme']) and !empty($_POST['user_limit']) and !empty($_POST['photo_limit']) and !empty($_POST['deadline']) and !empty($_POST['voteEnd']) and !empty($_POST['voteStart'])){
+                    if(strtotime($_POST['deadline']) and strtotime($_POST['voteStart']) and strtotime($_POST['voteEnd']) and strtotime($_POST['deadline']) <= strtotime($_POST['voteStart']) and strtotime($_POST['voteStart']) <= strtotime($_POST['voteEnd'])) {
+                        $contest = new Contest();
+                        $contest->setName($_POST['name']);
+                        $contest->setTheme($_POST['theme']);
+                        $contest->setUserLimit($_POST['user_limit']);
+                        $contest->setPhotoLimit($_POST['photo_limit']);
+                        $deadline = new \DateTime('@'.strtotime($_POST['deadline']));
+                        $start = new \DateTime('@'.strtotime($_POST['voteStart']));
+                        $end = new \DateTime('@'.strtotime($_POST['voteEnd']));
+                        $contest->setApplicationsDeadline($deadline);
+                        $contest->setVoteStartTime($start);
+                        $contest->setVoteEndTime($end);
+                        if(!empty($_POST['form'])){
+                            $form =true;
+                        }else{
+                            $form =false;
+                        }
+                        $contest->setUseForm($form);
+                        $entityManager->persist($contest);
+                        $entityManager->flush();
 
-                $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
-                $c = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $_POST['name']));
-                $organizer = new Organizer();
-                $organizer->setUserId($user);
-                $organizer->setContest($c);
-                $entityManager->persist($organizer);
-                $entityManager->flush();
-            return $this->redirect('/');
+                        $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
+                        $c = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $_POST['name']));
+                        $organizer = new Organizer();
+                        $organizer->setUserId($user);
+                        $organizer->setContest($c);
+                        $entityManager->persist($organizer);
+                        $entityManager->flush();
+                        return $this->redirect('/');
+                    }else {
+                        $this->addFlash(
+                            'error',
+                            'Jedna z dat jest nieprawidłowa'
+                        );
+                        return $this->render('contest/new_contest.html.twig', [
+                        ]);
+                    }
+                }else {
+                    $this->addFlash(
+                        'error',
+                        'Uzupełnij wszystkie pola formularza'
+                    );
+                    return $this->render('contest/new_contest.html.twig', [
+                ]);
+                }
             } else{
                 return $this->render('contest/new_contest.html.twig', [
                 ]);
@@ -256,10 +279,12 @@ class ContestController extends AbstractController
         $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
         $startTime= $contest->getVoteStartTime();
         $endTime= $contest->getVoteEndTime();
+        #czas głosowania
         if($startTime <= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw')) and $endTime >= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw'))){
             $username= $this->getUser()->getUsername();
             $user = $this->getDoctrine()->getRepository('App:UserAccounts')->findOneBy(array('email' => $username));
             $userId= $user->getId();
+            #jeśli sędzia
             if($this->getDoctrine()->getRepository("App:Contestants")->findOneBy(array("contest" => $id_c, "user_id"=>$userId))) {
             ##vote stuff
             $sql = " 
@@ -274,6 +299,7 @@ class ContestController extends AbstractController
             $stmt = $em->getConnection()->prepare($sql);
             $stmt->execute();
             $photos=  $stmt->fetchAll();
+            #zapisz głosy
             if($contest->getUseForm()){
                 if (isset($_POST["save"])) {
                     foreach ($photos as $p) {
@@ -397,23 +423,39 @@ class ContestController extends AbstractController
         $username= $this->getUser()->getUsername();
         $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
         $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
+        #organizator
         if($this->getDoctrine()->getRepository("App:Organizer")->findOneBy(array("contest" => $contest, "user_id"=>$user))) {
-            if(isset($_POST['save'])){
-                $contest->setTheme($_POST['theme']);
-                $contest->setUserLimit($_POST['user_limit']);
-                $contest->setPhotoLimit($_POST['photo_limit']);
-                $deadline = new \DateTime('@'.strtotime($_POST['deadline']));
-                $start = new \DateTime('@'.strtotime($_POST['voteStart']));
-                $end = new \DateTime('@'.strtotime($_POST['voteEnd']));
-                $contest->setApplicationsDeadline($deadline);
-                $contest->setVoteStartTime($start);
-                $contest->setVoteEndTime($end);
-                $entityManager->persist($contest);
-                $entityManager->flush();
-                $this->addFlash(
-                    'notice',
-                    'zapisano zmiany!'
-                );
+           #edycja konkursu
+            if(isset($_POST['save'])) {
+                if (!empty($_POST['theme']) and !empty($_POST['user_limit']) and !empty($_POST['photo_limit']) and !empty($_POST['deadline']) and !empty($_POST['voteEnd']) and !empty($_POST['voteStart'])) {
+                    if (strtotime($_POST['deadline']) and strtotime($_POST['voteStart']) and strtotime($_POST['voteEnd']) and strtotime($_POST['deadline']) <= strtotime($_POST['voteStart']) and strtotime($_POST['voteStart']) <= strtotime($_POST['voteEnd'])) {
+                        $contest->setTheme($_POST['theme']);
+                        $contest->setUserLimit($_POST['user_limit']);
+                        $contest->setPhotoLimit($_POST['photo_limit']);
+                        $deadline = new \DateTime('@' . strtotime($_POST['deadline']));
+                        $start = new \DateTime('@' . strtotime($_POST['voteStart']));
+                        $end = new \DateTime('@' . strtotime($_POST['voteEnd']));
+                        $contest->setApplicationsDeadline($deadline);
+                        $contest->setVoteStartTime($start);
+                        $contest->setVoteEndTime($end);
+                        $entityManager->persist($contest);
+                        $entityManager->flush();
+                        $this->addFlash(
+                            'notice',
+                            'zapisano zmiany!'
+                        );
+                    }else{
+                        $this->addFlash(
+                            'error',
+                            'Jedna z dat jest nieprawidłowa'
+                        );
+                    }
+                }else{
+                    $this->addFlash(
+                        'error',
+                        'Uzupełnij wszystkie pola formularza'
+                    );
+                }
             }
             # Macierz sędzia/ oceny
             $my_contestants= $contest->getMyContestants();
@@ -444,8 +486,6 @@ class ContestController extends AbstractController
                 }
                 $user_photos += ["$contestantName"=>$up ];
             }
-
-            #uczestnicy/ zdjęcia
 
             return $this->render('contest/organizer.html.twig', [
                 "contest" => $contest,
@@ -524,5 +564,10 @@ class ContestController extends AbstractController
          return $this->render('contest/result.html.twig', [
              "result" => $result,
          ]);
+     }
+
+     public function contestForm($contest){
+
+         return true;
      }
 }
