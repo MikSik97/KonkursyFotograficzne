@@ -107,6 +107,9 @@ class ContestController extends AbstractController
      * @return Response
      */
     public function contest($id){
+        if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id))) {
+            throw $this->createNotFoundException("Brak konkursu");
+        }
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $contest = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id));
@@ -133,6 +136,9 @@ class ContestController extends AbstractController
      * @param EntityManagerInterface $entityManager
      */
     public function signToContest($id_c, EntityManagerInterface $entityManager){
+        if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
+            throw $this->createNotFoundException('Brak konkursu');
+        }
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $username= $this->getUser()->getUsername();
@@ -186,13 +192,20 @@ class ContestController extends AbstractController
      * @param EntityManagerInterface $entityManager
      */
     public function PhotoToContest($id_c, EntityManagerInterface $entityManager){
+
+        if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
+            throw $this->createNotFoundException('Brak konkursu');
+        }
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user= $this->getUser();
         $username= $this->getUser()->getUsername();
+
         $contest = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c));
         $photo_limit = $contest->getPhotoLimit();
         $user_photos = $this->getDoctrine()->getRepository('App:Photo')->findBy(array('author' =>$user,'contest' => $contest));
         $user_photos_count = count($user_photos);
+
         if($user_photos_count < $photo_limit){
             $target_dir = "Dokumenty/$id_c/";
             $array = explode(".", $_FILES["fileToUpload"]["name"]);
@@ -257,7 +270,12 @@ class ContestController extends AbstractController
      * @return Response
      */
     public function contestPhotos($id_c){
+        if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
+            throw $this->createNotFoundException('Brak konkursu');
+        }
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $contest = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c));
         $photos = $contest->getAppliedPhotos();
 
@@ -275,10 +293,16 @@ class ContestController extends AbstractController
      * @throws \Exception
      */
     public function voteInContest($id_c, EntityManagerInterface $entityManager){
+        if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
+            throw $this->createNotFoundException('Brak konkursu');
+        }
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
         $startTime= $contest->getVoteStartTime();
         $endTime= $contest->getVoteEndTime();
+
         #czas głosowania
         if($startTime <= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw')) and $endTime >= new \DateTime('@'.strtotime('now' . ' +1 hour'), new \DateTimeZone('Europe/Warsaw'))){
             $username= $this->getUser()->getUsername();
@@ -419,10 +443,16 @@ class ContestController extends AbstractController
      * @throws \Exception
      */
     public function organizer($id_c, EntityManagerInterface $entityManager){
+        if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
+            throw $this->createNotFoundException('Brak konkursu');
+        }
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $username= $this->getUser()->getUsername();
         $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
         $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array("id" => $id_c));
+
         #organizator
         if($this->getDoctrine()->getRepository("App:Organizer")->findOneBy(array("contest" => $contest, "user_id"=>$user))) {
            #edycja konkursu
@@ -509,10 +539,17 @@ class ContestController extends AbstractController
      * @param EntityManagerInterface $entityManager
      */
     public function genRes($id_c,EntityManagerInterface $entityManager){
+
+        if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
+            throw $this->createNotFoundException('Brak konkursu');
+        }
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $username= $this->getUser()->getUsername();
         $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
         $userId= $user->getId();
+
         if($this->getDoctrine()->getRepository("App:Organizer")->findOneBy(array("contest" => $id_c, "user_id"=>$userId))) {
             $contest = $this->getDoctrine()->getRepository("App:Contest")->findOneBy(array('id' =>$id_c));
             $photos =$contest->getAppliedPhotos();
@@ -551,6 +588,10 @@ class ContestController extends AbstractController
      */
      public function result($id_c){
 
+         if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
+             throw $this->createNotFoundException('Brak konkursu');
+         }
+
          $sql = " 
                 select email, filepath, score
                 from photo join contest c on photo.contest_id = c.id join user_accounts ua on photo.author_id = ua.id
@@ -564,10 +605,5 @@ class ContestController extends AbstractController
          return $this->render('contest/result.html.twig', [
              "result" => $result,
          ]);
-     }
-
-     public function contestForm($contest){
-
-         return true;
      }
 }
