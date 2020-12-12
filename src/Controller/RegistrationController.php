@@ -63,7 +63,7 @@ class RegistrationController extends AbstractController
             }
         }else{
             return $this->render('registration/registration.html.twig', [
-                "error" => null
+                "error" => null,
             ]);
         }
     }
