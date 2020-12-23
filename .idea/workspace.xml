@@ -11,15 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="918e5a5c-8711-49b4-be7a-698c27e979d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/32/1608494085_338.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/32/1608494113_454.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Dokumenty/32/1608494317_845.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Dokumenty/7/1607600222_710.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Dokumenty/7/1607600234_780.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Dokumenty/7/1607600370_541.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Dokumenty/7/1607600380_987.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Dokumenty/7/1607604413_995.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Dokumenty/7/1607604424_859.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ContestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ContestType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/LoginType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserAccountsType.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,6 +206,7 @@
       <workItem from="1608136230934" duration="2421000" />
       <workItem from="1608202907917" duration="7865000" />
       <workItem from="1608492901781" duration="2028000" />
+      <workItem from="1608726165510" duration="1566000" />
     </task>
     <servers />
   </component>

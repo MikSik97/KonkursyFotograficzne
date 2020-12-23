@@ -33,8 +33,25 @@ class ContestController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $username= $this->getUser()->getUsername();
-
-
+        $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
+        $userId = $user->getId();
+        $sql = " 
+                    select count(user_id_id) as id
+                    from organizer join contest c on organizer.contest_id = c.id
+                    where vote_end_time >= CURRENT_TIMESTAMP and user_id_id = $userId;   
+                            ";
+        $em = $this->getDoctrine()->getManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        $amount=  $stmt->fetch();
+        var_dump($amount);
+        if($amount['id'] >= 3){
+            $this->addFlash(
+                'error',
+                'Zbyt wiele aktywnych konkursów'
+            );
+            return $this->redirect('/contests');
+        }
         if (isset($_POST['save'])) {
             if(!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $_POST['name']))){
                 if(!empty($_POST['name']) and  !empty($_POST['theme']) and !empty($_POST['user_limit']) and !empty($_POST['photo_limit']) and !empty($_POST['deadline']) and !empty($_POST['voteEnd']) and !empty($_POST['voteStart'])){
@@ -59,7 +76,6 @@ class ContestController extends AbstractController
                         $entityManager->persist($contest);
                         $entityManager->flush();
 
-                        $user = $this->getDoctrine()->getRepository("App:UserAccounts")->findOneBySomeField($username);
                         $c = $this->getDoctrine()->getRepository('App:Contest')->findOneBy(array("name" => $_POST['name']));
                         $organizer = new Organizer();
                         $organizer->setUserId($user);
@@ -91,6 +107,7 @@ class ContestController extends AbstractController
         return $this->render('contest/new_contest.html.twig', [
         ]);
     }
+
     /**
      * @Route("/contests", name="contests")
      */
