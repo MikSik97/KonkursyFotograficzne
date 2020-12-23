@@ -13,6 +13,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\HttpFoundation\Request;
@@ -120,6 +121,7 @@ class ContestController extends AbstractController
         $photos = $this->getDoctrine()->getRepository("App:Photo")->findBy(array("author" =>$user, "contest" =>$contest));
         $is_contestant = $this->getDoctrine()->getRepository("App:Contestants")->findOneBy(array("user_id" =>$user, "contest" =>$contest));
         $photos_count = count($photos);
+
         return $this->render('contest/contest.html.twig', [
             'contest' => $contest,
             "photos" => $photos,
@@ -290,7 +292,7 @@ class ContestController extends AbstractController
      * @param $id_c
      * @param EntityManagerInterface $entityManager
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function voteInContest($id_c, EntityManagerInterface $entityManager){
         if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
@@ -440,7 +442,7 @@ class ContestController extends AbstractController
      * @param $id_c
      * @param EntityManagerInterface $entityManager
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function organizer($id_c, EntityManagerInterface $entityManager){
         if (!$this->getDoctrine()->getRepository('App:Contest')->findOneBy(array('id' => $id_c))) {
@@ -457,8 +459,11 @@ class ContestController extends AbstractController
         if($this->getDoctrine()->getRepository("App:Organizer")->findOneBy(array("contest" => $contest, "user_id"=>$user))) {
            #edycja konkursu
             if(isset($_POST['save'])) {
-                if (!empty($_POST['theme']) and !empty($_POST['user_limit']) and !empty($_POST['photo_limit']) and !empty($_POST['deadline']) and !empty($_POST['voteEnd']) and !empty($_POST['voteStart'])) {
-                    if (strtotime($_POST['deadline']) and strtotime($_POST['voteStart']) and strtotime($_POST['voteEnd']) and strtotime($_POST['deadline']) <= strtotime($_POST['voteStart']) and strtotime($_POST['voteStart']) <= strtotime($_POST['voteEnd'])) {
+                if (!empty($_POST['theme']) and !empty($_POST['user_limit']) and !empty($_POST['photo_limit']) and
+                    !empty($_POST['deadline']) and !empty($_POST['voteEnd']) and !empty($_POST['voteStart'])) {
+                    if (strtotime($_POST['deadline']) and strtotime($_POST['voteStart']) and strtotime($_POST['voteEnd'])
+                        and strtotime($_POST['deadline']) <= strtotime($_POST['voteStart']) and strtotime($_POST['voteStart'])
+                        <= strtotime($_POST['voteEnd'])) {
                         $contest->setTheme($_POST['theme']);
                         $contest->setUserLimit($_POST['user_limit']);
                         $contest->setPhotoLimit($_POST['photo_limit']);
